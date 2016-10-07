@@ -38,7 +38,7 @@ public class First {
             if (Character.isUpperCase(firstChar)) {
                 String firstChStr = Character.toString(firstChar);
                 FirstItem nextFirstItem = UniqueNonTerminals.stream().filter(o -> o.NonTerminal.
-                        matches(firstChStr)).findFirst().orElse(null);
+                        equals(firstChStr)).findFirst().orElse(null);
 
                 if (nextFirstItem == null) {
                     System.out.println("Found Non Terminal " + firstChStr + " without any derivation");
@@ -62,10 +62,12 @@ public class First {
         int n;
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter productions in form S -> Sb, @ for Epsilon/null.");
+        System.out.println("Instead of using S -> Sb / d, enter 2 productions s -> Sb and S -> d");
         System.out.print("Enter no of productions\t:");
         n = Integer.parseInt(br.readLine());
 
-        System.out.println("Enter productions in form S -> Sb, @ for Epsilon/null");
+        System.out.println("Enter productions");
         for (int i = 0; i < n; i++) {
             input = br.readLine();
             String arr[] = input.trim().split("->");
