@@ -30,7 +30,7 @@ public class GenerateTokensFromInputStream {
         input = bufferedReader.readLine();
 
 
-        String tokens[] = input.trim().split("\\s");
+        String tokens[] = input.trim().split("\\s+");
         System.out.print("Tokens :");
         for (int i = 0; i < tokens.length; i++) {
             if (i == 0)
