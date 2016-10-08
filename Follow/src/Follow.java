@@ -3,7 +3,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Created by Varun Garg on 04/10/2016.
+ */
 public class Follow {
+
+    //issue left
+    //TODO: See if First of b contains epsilon / @ then use follow of A
+    //The other condition where B is last and b is not present then use follow of A is working.
 
     public static class Production {
         public String NonTerminal;
@@ -60,11 +67,6 @@ public class Follow {
         firstItem.FirstCalculated = true;
     }
 
-    public static void BeginCalculateFollow(ArrayList<Production> productions, ArrayList<FirstItem> FirstItems, ArrayList<FollowItem> followItems, FollowItem followItem) {
-        followItem.Follow.add('$'); //Rule 1
-        CalculateFollow(productions, FirstItems, followItems, followItem);
-    }
-
     public static void CalculateFollow(ArrayList<Production> productions, ArrayList<FirstItem> FirstItems, ArrayList<FollowItem> followItems, FollowItem followItem) {
         //using @ for epsilon / null
 
@@ -101,8 +103,13 @@ public class Follow {
                 }
             } else if (nextPosition == expression.length()) {
                 //Rule 3
-                FollowItem nextFollowItem = followItems.stream().filter(o -> o.NonTerminal.equals(followItem.NonTerminal))
-                        .findFirst().orElse(null);
+                FollowItem nextFollowItem = null;
+                for (FollowItem temp : followItems) {
+                    if (temp != null && temp.NonTerminal.equals(productions.get(i).NonTerminal)) {
+                        nextFollowItem = temp;
+                        break;
+                    }
+                }
 
                 if (nextFollowItem == null) {
                     System.out.println("Found Non Terminal " + followItem.NonTerminal + " without any derivation");
@@ -159,8 +166,9 @@ public class Follow {
         for (int i = 0; i < UniqueNonTerminals.size(); i++)
             CalculateFirst(productions, UniqueNonTerminals, UniqueNonTerminals.get(i));
 
+        FollowItems.get(0).Follow.add('$'); //Rule 1
         for (int i = 0; i < FollowItems.size(); i++)
-            BeginCalculateFollow(productions, UniqueNonTerminals, FollowItems, FollowItems.get(i));
+            CalculateFollow(productions, UniqueNonTerminals, FollowItems, FollowItems.get(i));
 
         System.out.println("Follow for following Non Terminals is as follows");
 

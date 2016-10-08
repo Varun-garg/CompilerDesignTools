@@ -1,9 +1,10 @@
-package com.varun.CompilerLab;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Created by Varun Garg on 04/10/2016.
+ */
 public class CheckStringFromGrammar {
 
     public static void main(String[] args) throws IOException {

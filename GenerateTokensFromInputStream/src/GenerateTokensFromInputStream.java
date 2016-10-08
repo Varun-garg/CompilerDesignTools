@@ -1,10 +1,11 @@
-package com.varun.CompilerLab;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+/**
+ * Created by Varun Garg on 04/10/2016.
+ */
 public class GenerateTokensFromInputStream {
 
     //using table at https://www.tutorialspoint.com/compiler_design/compiler_design_lexical_analysis.htm
