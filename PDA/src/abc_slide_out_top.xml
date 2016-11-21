@@ -1,0 +1,44 @@
+#include <iostream>
+#include <stdio.h>
+#include <sstream>
+#include <string.h>
+#include <malloc.h>
+
+char** amount_value(int input1,char* input2[])
+{
+    using namespace std;
+    char temp;
+    int arr[50][50], minarr[50][50], mmax,i,j,n = input1,comma_flag = 0;
+
+    stringstream buffer;
+
+    for(i = 0; i < input1; i++)
+    {
+        istringstream oss(input2[i]);
+        //cout<<input2[i]<<endl;
+        cin.rdbuf(oss.rdbuf());
+        for(j = 0; j < input1; j ++)
+        {
+            if(j != (n-1))
+                cin>>arr[i][j]>>temp;
+            else
+                cin>>arr[i][j];
+        //   cout<<arr[i][j]<< " ";
+        }
+       // buffer <<endl;
+    }
+
+    for(i = 0; i<n; i++) // find minimumeach neighbour
+    {
+        for(j = 0; j <n; j++)
+        {
+            minarr[i][j] = arr[i][j];
+            if(i>0) // 1th row
+            {
+                if(j>0)
+                {
+                    if(arr[i-1][j-1] < minarr[i][j])
+                        minarr[i][j] = arr[i-1][j-1];
+                }
+                if(arr[i-1][j] < minarr[i][j])
+                    minarr[i][j] = arr[i-1][j
