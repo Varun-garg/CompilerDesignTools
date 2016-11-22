@@ -34,8 +34,7 @@ public class Main {
             Production production = new Production();
             production.NonTerminal = arr[0].trim();
             production.Expression = arr[1].trim();
-            System.out.println("Leading terminal\t:" + TrailingTerminal(production));
+            System.out.println("Trailing terminal\t:" + TrailingTerminal(production));
         }
-
     }
 }
